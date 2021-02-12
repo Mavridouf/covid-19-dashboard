@@ -93,7 +93,7 @@ body {
 
 .mainBody {
   background: $creme;
-  height: 100%;
+  height: 77.8%;
   border-radius: 12px 12px 0 0;
   padding: 46px;
 }
