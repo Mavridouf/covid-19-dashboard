@@ -1,30 +1,100 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="header">
+    <h2>Covid-19 Dashboard</h2>
+    <div class="circle"></div>
   </div>
-  <router-view/>
+  <div class="mainBody">
+    <nav-bar></nav-bar>
+    <router-view></router-view>
+  </div>
 </template>
 
+<script>
+import NavBar from "./ui/NavBar";
+
+export default {
+  components: {
+    "nav-bar": NavBar,
+  },
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Ubuntu:wght@700&display=swap");
+@import "./styles/styles.scss";
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
 }
 
-#nav {
-  padding: 30px;
+body {
+  font-family: "Roboto", "Ubuntu", sans-serif;
+  font-size: 14px;
+  color: $black;
+  margin: 0;
+  background: $primary;
+}
 
-  a {
+/* width */
+::-webkit-scrollbar {
+  border-radius: 12px;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 12px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#app {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.header {
+  height: 68px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $creme;
+
+  h2 {
+    margin-left: 46px;
+    font-family: Ubuntu;
+    font-style: normal;
     font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+    font-size: 32px;
+    letter-spacing: 0.15em;
   }
+
+  .circle {
+    width: 42px;
+    height: 42px;
+    margin-right: 46px;
+    background: $creme;
+    border-radius: 50%;
+  }
+}
+
+.mainBody {
+  background: $creme;
+  height: 100%;
+  border-radius: 12px 12px 0 0;
+  padding: 46px;
 }
 </style>
