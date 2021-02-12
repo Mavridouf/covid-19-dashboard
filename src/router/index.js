@@ -1,34 +1,36 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import Daily from "../pages/DailyPage.vue";
-import Overview from "../pages/OverviewPage.vue";
-import Gender from "../pages/GenderPage.vue";
-import About from "../pages/AboutPage.vue";
-import NotFound from "../pages/NotFoundPage.vue";
-
 const routes = [
   { path: "/", redirect: "/daily" },
   {
     path: "/daily",
     name: "DailyPage",
-    component: Daily,
+    component: () =>
+      import(/* webpackChunkName: "daily" */ "../pages/DailyPage.vue"),
   },
   {
     path: "/overview",
     name: "OverviewPage",
-    component: Overview,
+    component: () =>
+      import(/* webpackChunkName: "overview" */ "../pages/OverviewPage.vue"),
   },
   {
     path: "/gender",
     name: "GenderPage",
-    component: Gender,
+    component: () =>
+      import(/* webpackChunkName: "gender" */ "../pages/GenderPage.vue"),
   },
   {
     path: "/about",
     name: "About",
-    component: About,
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../pages/AboutPage.vue"),
   },
-  { path: "/:notFound(.*)", component: NotFound },
+  {
+    path: "/:notFound(.*)",
+    component: () =>
+      import(/* webpackChunkName: "not-found" */ "../pages/NotFoundPage.vue"),
+  },
 ];
 
 const router = createRouter({
