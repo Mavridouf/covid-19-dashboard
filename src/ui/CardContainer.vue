@@ -6,9 +6,9 @@
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 84px;
+  margin-top: 64px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 </style>

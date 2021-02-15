@@ -4,8 +4,10 @@
     <div class="circle"></div>
   </div>
   <div class="mainBody">
-    <nav-bar></nav-bar>
-    <router-view></router-view>
+    <div class="main-container">
+      <nav-bar></nav-bar>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -34,7 +36,7 @@ body {
   font-size: 14px;
   color: $black;
   margin: 0;
-  background: $primary;
+  background: #4f4f4f;
 }
 
 ::-webkit-scrollbar {
@@ -62,7 +64,7 @@ body {
 }
 
 .header {
-  height: 68px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,13 +75,13 @@ body {
     font-family: Ubuntu;
     font-style: normal;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 26px;
     letter-spacing: 0.15em;
   }
 
   .circle {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     margin-right: 46px;
     background: $creme;
     border-radius: 50%;
@@ -91,5 +93,9 @@ body {
   background: $creme;
   border-radius: 12px 12px 0 0;
   padding: 46px;
+  .main-container {
+    width: 92%;
+    margin: auto;
+  }
 }
 </style>

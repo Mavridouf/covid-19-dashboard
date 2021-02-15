@@ -41,7 +41,7 @@
 .link {
   cursor: pointer;
   color: $black;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   padding-bottom: 8px;
   text-decoration: none;
@@ -56,7 +56,7 @@
   height: 4px;
   left: 50%;
   position: absolute;
-  background: $primary;
+  background: $yellow;
   transition: width 0.2s ease 0s, left 0.2s;
   width: 0;
 }
@@ -68,7 +68,7 @@
 }
 
 .linkActive {
-  color: $primary;
+  color: $yellow;
   font-weight: 700;
 }
 
@@ -79,7 +79,7 @@
   display: block;
   height: 4px;
   position: absolute;
-  background: $primary;
+  background: $yellow;
   width: 100%;
   left: 0%;
   border-radius: 12px;

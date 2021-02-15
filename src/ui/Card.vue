@@ -1,12 +1,16 @@
 <template>
-  <div class="card"></div>
+  <div class="card">
+    <slot></slot>
+  </div>
 </template>
 <style scoped lang="scss">
 .card {
-  width: 426px;
-  height: 280px;
+  width: 480px;
+  height: 320px;
   background: #ffffff;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 6px 12px rgb(0 0 0 / 12%);
   border-radius: 12px;
+  padding: 30px 25px;
+  margin: 0px 5px 20px 5px;
 }
 </style>

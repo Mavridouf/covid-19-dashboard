@@ -1,18 +1,38 @@
 <template>
   <div class="container">
     <h1 class="title">{{ title }}</h1>
-    <div class="results">
+    <div v-if="loading" class="results flex-col">
+      <div>
+        <div
+          class="skeleton-box"
+          style="width:140px; margin-right: 20px;"
+        ></div>
+        <div
+          class="skeleton-box"
+          style="width:60px;  margin-right: 20px;"
+        ></div>
+        <div class="skeleton-box" style="width:100px;"></div>
+      </div>
+      <div>
+        <div
+          class="skeleton-box"
+          style="width:200px; margin-right: 20px;"
+        ></div>
+        <div class="skeleton-box" style="width:100px;"></div>
+      </div>
+    </div>
+    <div v-if="!loading" class="results">
       <div class="col">
         <div class="row">
           <span>Confirmed</span>
           <span class="yellow">{{ confirmed }}</span>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <span>Recovered</span>
           <span class="green">{{ recovered }}</span>
-        </div>
+        </div> -->
       </div>
-      <div class="col">
+      <!-- <div class="col">
         <div class="row">
           <span>Deaths</span>
           <span class="red">{{ deaths }}</span>
@@ -31,11 +51,13 @@
           <span>Vaccines</span>
           <span class="mint">{{ vaccines }}</span>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: [
     "title",
@@ -46,24 +68,38 @@ export default {
     "tests",
     "vaccines",
   ],
+  computed: {
+    ...mapGetters({
+      loading: "loading",
+    }),
+  },
 };
 </script>
+
 <style scoped lang="scss">
 @import "../styles/styles.scss";
 
 .container {
-  margin-top: 56px;
+  margin-top: 40px;
   display: flex;
   align-items: center;
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+  }
   .title {
     margin: 0;
     font-family: "Ubuntu";
-    font-size: 54px;
+    font-size: 48px;
     font-weight: 700;
     letter-spacing: 0.2em;
   }
   .results {
-    flex: 1;
+    background: #ffffff;
+    box-shadow: 0px 6px 12px rgb(0 0 0 / 12%);
+    border-radius: 12px;
+    padding: 15px 24px;
+    margin-left: 24px;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
@@ -80,7 +116,7 @@ export default {
         padding-top: 5px;
         padding-bottom: 5px;
         span {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 500;
         }
       }
