@@ -3,7 +3,7 @@
     title="Total"
     :confirmed="totalConfirmed"
     :deaths="totalDeaths"
-    icu="25"
+    :icu="totalIcu"
     recovered="250"
     tests="10000"
     vaccines="4549"
@@ -15,6 +15,9 @@
     <card>
       <total-deaths></total-deaths>
     </card>
+    <card>
+      <total-icu></total-icu>
+    </card>
   </card-container>
 </template>
 
@@ -22,6 +25,7 @@
 import MainHeader from "../components/MainHeader.vue";
 import TotalConfirmed from "../components/TotalConfirmed";
 import TotalDeaths from "../components/TotalDeaths";
+import TotalIcu from "../components/TotalIcu";
 
 import { mapGetters } from "vuex";
 
@@ -30,10 +34,12 @@ export default {
     MainHeader,
     TotalConfirmed,
     TotalDeaths,
+    TotalIcu,
   },
   computed: {
     ...mapGetters("confirmedModule", ["totalConfirmed"]),
     ...mapGetters("deathModule", ["totalDeaths"]),
+    ...mapGetters("icuModule", ["totalIcu"]),
   },
 };
 </script>
