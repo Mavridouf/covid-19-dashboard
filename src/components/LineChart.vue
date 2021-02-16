@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  props: ["data", "type"],
+  props: ["data", "color"],
   data() {
     return {
       series: [
@@ -28,7 +28,7 @@ export default {
           enabled: false,
         },
         stroke: {
-          colors: ["#fac30f"],
+          colors: [this.color],
           width: 2,
           curve: "smooth",
         },

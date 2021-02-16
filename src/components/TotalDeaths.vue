@@ -1,11 +1,11 @@
 <template>
-  <div v-if="!confirmedLoading">
-    <div class="yellow title">Confirmed</div>
+  <div v-if="!deathsLoading">
+    <div class="red title">Deaths</div>
     <div class="chart">
-      <line-chart :data="confirmed" color="#fac30f"></line-chart>
+      <line-chart :data="deaths" color="#ff715b"></line-chart>
     </div>
   </div>
-  <div v-if="confirmedLoading" class="skelContainer">
+  <div v-if="deathsLoading" class="skelContainer">
     <div class="skeleton-box" style="width:55%;"></div>
     <div
       class="skeleton-box"
@@ -21,13 +21,13 @@ import LineChart from "./LineChart.vue";
 export default {
   components: { LineChart },
   methods: {
-    ...mapActions("confirmedModule", ["getConfirmed"]),
+    ...mapActions("deathModule", ["getDeaths"]),
   },
   computed: {
-    ...mapGetters("confirmedModule", ["confirmed", "confirmedLoading"]),
+    ...mapGetters("deathModule", ["deaths", "deathsLoading"]),
   },
   mounted() {
-    this.getConfirmed();
+    this.getDeaths();
   },
 };
 </script>

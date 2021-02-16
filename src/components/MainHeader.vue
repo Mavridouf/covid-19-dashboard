@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">{{ title }}</h1>
-    <div v-if="loading" class="results flex-col">
+    <div v-if="confirmedLoading || deathsLoading" class="results flex-col">
       <div>
         <div
           class="skeleton-box"
@@ -21,7 +21,7 @@
         <div class="skeleton-box" style="width:100px;"></div>
       </div>
     </div>
-    <div v-if="!loading" class="results">
+    <div v-if="!confirmedLoading && !deathsLoading" class="results">
       <div class="col">
         <div class="row">
           <span>Confirmed</span>
@@ -32,17 +32,17 @@
           <span class="green">{{ recovered }}</span>
         </div> -->
       </div>
-      <!-- <div class="col">
+      <div class="col">
         <div class="row">
           <span>Deaths</span>
           <span class="red">{{ deaths }}</span>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <span>Tests</span>
           <span class="blue">{{ tests }}</span>
-        </div>
+        </div> -->
       </div>
-      <div class="col">
+      <!-- <div class="col">
         <div class="row">
           <span>ICU</span>
           <span class="pink">{{ icu }}</span>
@@ -51,7 +51,7 @@
           <span>Vaccines</span>
           <span class="mint">{{ vaccines }}</span>
         </div>
-      </div> -->
+      </div>  -->
     </div>
   </div>
 </template>
@@ -69,9 +69,8 @@ export default {
     "vaccines",
   ],
   computed: {
-    ...mapGetters({
-      loading: "loading",
-    }),
+    ...mapGetters("confirmedModule", ["confirmedLoading"]),
+    ...mapGetters("deathModule", ["deathsLoading"]),
   },
 };
 </script>
