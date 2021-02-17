@@ -25,7 +25,7 @@
       </div>
     </div>
     <div
-      v-if="!confirmedLoading && !deathsLoading && !icuLoading"
+      v-if="!confirmedLoading && !deathsLoading && !icuLoading && !testsLoading"
       class="results"
     >
       <div class="col">
