@@ -16,10 +16,8 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import LineChart from "./LineChart.vue";
 
 export default {
-  components: { LineChart },
   methods: {
     ...mapActions("deathModule", ["getDeaths"]),
   },

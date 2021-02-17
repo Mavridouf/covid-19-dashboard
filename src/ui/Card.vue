@@ -5,8 +5,7 @@
 </template>
 <style scoped lang="scss">
 .card {
-  width: 480px;
-  height: 320px;
+  width: 44%;
   background: #ffffff;
   box-shadow: 0px 6px 12px rgb(0 0 0 / 12%);
   border-radius: 12px;

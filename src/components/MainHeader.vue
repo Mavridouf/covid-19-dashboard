@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="title">{{ title }}</h1>
     <div
-      v-if="confirmedLoading || deathsLoading || icuLoading"
+      v-if="confirmedLoading || deathsLoading || icuLoading || testsLoading"
       class="results flex-col"
     >
       <div>
@@ -33,30 +33,20 @@
           <span>Confirmed</span>
           <span class="yellow">{{ confirmed }}</span>
         </div>
-        <!-- <div class="row">
-          <span>Recovered</span>
-          <span class="green">{{ recovered }}</span>
-        </div> -->
-      </div>
-      <div class="col">
         <div class="row">
           <span>Deaths</span>
           <span class="red">{{ deaths }}</span>
         </div>
-        <!-- <div class="row">
-          <span>Tests</span>
-          <span class="blue">{{ tests }}</span>
-        </div> -->
       </div>
       <div class="col">
         <div class="row">
           <span>ICU</span>
-          <span class="pink">{{ icu }}</span>
+          <span class="mint">{{ icu }}</span>
         </div>
-        <!-- <div class="row">
-          <span>Vaccines</span>
-          <span class="mint">{{ vaccines }}</span>
-        </div> -->
+        <div class="row">
+          <span>Tests</span>
+          <span class="purple">{{ tests }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -65,19 +55,12 @@
 import { mapGetters } from "vuex";
 
 export default {
-  props: [
-    "title",
-    "confirmed",
-    "deaths",
-    "icu",
-    "recovered",
-    "tests",
-    "vaccines",
-  ],
+  props: ["title", "confirmed", "deaths", "icu", "tests"],
   computed: {
     ...mapGetters("confirmedModule", ["confirmedLoading"]),
     ...mapGetters("deathModule", ["deathsLoading"]),
     ...mapGetters("icuModule", ["icuLoading"]),
+    ...mapGetters("testsModule", ["testsLoading"]),
   },
 };
 </script>
@@ -109,12 +92,11 @@ export default {
     flex-wrap: wrap;
     display: flex;
     align-items: center;
-    padding-left: 40px;
     .col {
       width: 150px;
       display: flex;
       flex-direction: column;
-      padding-right: 42px;
+      padding: 0px 10px;
       .row {
         display: flex;
         align-items: center;

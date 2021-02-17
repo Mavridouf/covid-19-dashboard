@@ -1,11 +1,11 @@
 <template>
-  <div v-if="!confirmedLoading">
-    <div class="yellow title">Confirmed</div>
+  <div v-if="!testsLoading">
+    <div class="purple title">Tests</div>
     <div class="chart">
-      <line-chart :data="confirmed" color="#fac30f"></line-chart>
+      <line-chart :data="tests" color="#A084FF"></line-chart>
     </div>
   </div>
-  <div v-if="confirmedLoading" class="skelContainer">
+  <div v-if="testsLoading" class="skelContainer">
     <div class="skeleton-box" style="width:55%;"></div>
     <div
       class="skeleton-box"
@@ -19,13 +19,13 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   methods: {
-    ...mapActions("confirmedModule", ["getConfirmed"]),
+    ...mapActions("testsModule", ["getTests"]),
   },
   computed: {
-    ...mapGetters("confirmedModule", ["confirmed", "confirmedLoading"]),
+    ...mapGetters("testsModule", ["tests", "testsLoading"]),
   },
   mounted() {
-    this.getConfirmed();
+    this.getTests();
   },
 };
 </script>

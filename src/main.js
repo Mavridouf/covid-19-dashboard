@@ -6,7 +6,7 @@ import VueApexCharts from "vue3-apexcharts";
 
 import Card from "./ui/Card.vue";
 import CardContainer from "./ui/CardContainer.vue";
-import LineChart from "./components/LineChart.vue";
+import LineChart from "./ui/LineChart.vue";
 
 const app = createApp(App)
   .use(store)

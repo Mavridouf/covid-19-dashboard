@@ -1,8 +1,8 @@
 <template>
   <div v-if="!icuLoading">
-    <div class="pink title">ICU</div>
+    <div class="mint title">ICU</div>
     <div class="chart">
-      <line-chart :data="icu" color="#f46197"></line-chart>
+      <line-chart :data="icu" color="#36C9C6"></line-chart>
     </div>
   </div>
   <div v-if="icuLoading" class="skelContainer">
@@ -16,10 +16,8 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import LineChart from "./LineChart.vue";
 
 export default {
-  components: { LineChart },
   methods: {
     ...mapActions("icuModule", ["getIcu"]),
   },

@@ -56,7 +56,7 @@
   height: 4px;
   left: 50%;
   position: absolute;
-  background: $yellow;
+  background: $vue;
   transition: width 0.2s ease 0s, left 0.2s;
   width: 0;
 }
@@ -68,7 +68,7 @@
 }
 
 .linkActive {
-  color: $yellow;
+  color: $vue;
   font-weight: 700;
 }
 
@@ -79,7 +79,7 @@
   display: block;
   height: 4px;
   position: absolute;
-  background: $yellow;
+  background: $vue;
   width: 100%;
   left: 0%;
   border-radius: 12px;

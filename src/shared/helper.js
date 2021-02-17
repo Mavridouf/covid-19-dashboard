@@ -9,7 +9,7 @@ export default {
         x: d.date,
         y: d.confirmed ? d.confirmed : prevVal,
       });
-      prevVal = d.confirmed;
+      prevVal = d.confirmed ? d.confirmed : prevVal;
     });
     return apexData;
   },
@@ -26,7 +26,7 @@ export default {
         x: d.date,
         y: d.deaths ? d.deaths : prevVal,
       });
-      prevVal = d.deaths;
+      prevVal = d.deaths ? d.deaths : prevVal;
     });
     return apexData;
   },
@@ -43,12 +43,29 @@ export default {
         x: d.date,
         y: d.intensive_care ? d.intensive_care : prevVal,
       });
-      prevVal = d.intensive_care;
+      prevVal = d.intensive_care ? d.intensive_care : prevVal;
     });
     return apexData;
   },
 
   getTotalIcu(apiData) {
     return apiData[apiData.length - 1].intensive_care;
+  },
+
+  getTests(apiData) {
+    const apexData = [];
+    let prevVal = 0;
+    _.forEach(apiData, (d) => {
+      apexData.push({
+        x: d.date,
+        y: d.tests ? d.tests : prevVal,
+      });
+      prevVal = d.tests ? d.tests : prevVal;
+    });
+    return apexData;
+  },
+
+  getTotalTests(apiData) {
+    return apiData[apiData.length - 1].tests;
   },
 };

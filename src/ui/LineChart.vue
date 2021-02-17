@@ -32,6 +32,9 @@ export default {
           width: 2,
           curve: "smooth",
         },
+        fill: {
+          colors: [this.color],
+        },
         yaxis: {
           labels: {
             style: {
