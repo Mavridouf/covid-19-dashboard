@@ -19,6 +19,10 @@ export default {
           "setAgeGroups",
           helper.getAgeGroups(res.data.total_age_gender_distribution)
         );
+        context.commit(
+          "setTotalGenderData",
+          helper.getTotalGenderData(res.data.total_age_gender_distribution)
+        );
         context.commit("setLoading", false);
       });
   },

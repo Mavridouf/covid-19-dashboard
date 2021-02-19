@@ -9,6 +9,7 @@ export default {
       male: null,
       female: null,
       ageGroups: [],
+      totalGenderData: null,
       gendersLoading: false,
     };
   },

@@ -80,6 +80,19 @@ export default {
     return apexData;
   },
 
+  getTotalGenderData(apiData) {
+    const totalData = {};
+    _.forEach(apiData, (gender) => {
+      _.forEach(gender, (type, key) => {
+        _.forEach(type, (ageGroup) => {
+          if (!totalData[key]) totalData[key] = 0;
+          totalData[key] += +ageGroup;
+        });
+      });
+    });
+    return totalData;
+  },
+
   getAgeGroups(apiData) {
     let apexData = [];
     apexData = _.keys(apiData.males.cases);

@@ -8,6 +8,9 @@ export default {
   ageGroups(state) {
     return state.ageGroups;
   },
+  totalGenderData(state) {
+    return state.totalGenderData;
+  },
   gendersLoading(state) {
     return state.gendersLoading;
   },

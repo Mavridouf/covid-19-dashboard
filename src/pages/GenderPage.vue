@@ -1,9 +1,9 @@
 <template>
   <gender-header
     title="Total"
-    :cases="2000"
-    :deaths="200"
-    :icu="323"
+    :cases="totalGenderData?.cases"
+    :deaths="totalGenderData?.deaths"
+    :icu="totalGenderData?.critical"
     :loading="gendersLoading"
   ></gender-header>
   <card-container>
@@ -62,6 +62,7 @@ export default {
       "male",
       "female",
       "ageGroups",
+      "totalGenderData",
       "gendersLoading",
     ]),
   },
