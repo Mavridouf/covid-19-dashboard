@@ -4,11 +4,12 @@
 
 <script>
 export default {
-  props: ["data", "color"],
+  props: ["data", "color", "type"],
   data() {
     return {
       series: [
         {
+          name: this.type,
           data: this.data,
         },
       ],
@@ -21,6 +22,7 @@ export default {
             enabled: false,
           },
         },
+        colors: [this.color],
         grid: {
           strokeDashArray: 5,
         },
@@ -28,7 +30,6 @@ export default {
           enabled: false,
         },
         stroke: {
-          colors: [this.color],
           width: 2,
           curve: "smooth",
         },

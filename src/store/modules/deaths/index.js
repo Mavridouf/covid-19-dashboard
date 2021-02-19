@@ -6,8 +6,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      deaths: {},
-      totalDeaths: {},
+      deaths: null,
+      totalDeaths: null,
       deathsLoading: false,
     };
   },

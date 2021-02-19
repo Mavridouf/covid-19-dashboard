@@ -6,8 +6,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      icu: {},
-      totalIcu: {},
+      icu: null,
+      totalIcu: null,
       icuLoading: false,
     };
   },

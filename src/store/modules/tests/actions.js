@@ -15,4 +15,9 @@ export default {
         context.commit("setTestsLoading", false);
       });
   },
+
+  clearTests(context) {
+    context.commit("setTests", null);
+    context.commit("setTotalTests", null);
+  },
 };

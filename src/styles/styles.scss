@@ -1,17 +1,12 @@
 $black: #333;
-$primary: #385f71;
 $red: #ff715b;
 $pink: #f46197;
 $yellow: #fac30f;
 $mint: #36c9c6;
-$blue: #56ccf2;
+$blue: #03a9f4;
 $creme: #fffefb;
 $purple: #a084ff;
 $vue: #06d6a0;
-
-.primary {
-  color: $primary;
-}
 
 .red {
   color: $red;
@@ -35,6 +30,10 @@ $vue: #06d6a0;
 
 .purple {
   color: #a084ff;
+}
+
+.vue {
+  color: $vue;
 }
 
 .skeleton-box {

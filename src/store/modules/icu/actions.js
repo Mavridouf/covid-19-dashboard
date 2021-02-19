@@ -12,4 +12,9 @@ export default {
         context.commit("setIcuLoading", false);
       });
   },
+
+  clearIcu(context) {
+    context.commit("setIcu", null);
+    context.commit("setTotalIcu", null);
+  },
 };

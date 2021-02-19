@@ -8,42 +8,84 @@
   ></main-header>
   <card-container>
     <card>
-      <total-confirmed></total-confirmed>
+      <card-content :loading="confirmedLoading" type="confirmed">
+        <line-chart
+          v-if="confirmed"
+          :data="confirmed"
+          type="Confrimed"
+          color="#fac30f"
+        ></line-chart>
+      </card-content>
     </card>
     <card>
-      <total-deaths></total-deaths>
+      <card-content :loading="deathsLoading" type="deaths">
+        <line-chart
+          v-if="deaths"
+          type="Deaths"
+          :data="deaths"
+          color="#ff715b"
+        ></line-chart>
+      </card-content>
     </card>
     <card>
-      <total-icu></total-icu>
+      <card-content :loading="icuLoading" type="icu">
+        <line-chart
+          v-if="icu"
+          :data="icu"
+          type="Icu"
+          color="#36c9c6"
+        ></line-chart>
+      </card-content>
     </card>
     <card>
-      <total-tests></total-tests>
+      <card-content :loading="testsLoading" type="tests">
+        <line-chart
+          v-if="tests"
+          type="Tests"
+          :data="tests"
+          color="#a084ff"
+        ></line-chart>
+      </card-content>
     </card>
   </card-container>
 </template>
 
 <script>
 import MainHeader from "../components/MainHeader.vue";
-import TotalConfirmed from "../components/TotalConfirmed";
-import TotalDeaths from "../components/TotalDeaths";
-import TotalIcu from "../components/TotalIcu";
-import TotalTests from "../components/TotalTests";
 
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     MainHeader,
-    TotalConfirmed,
-    TotalDeaths,
-    TotalIcu,
-    TotalTests,
+  },
+  methods: {
+    ...mapActions("confirmedModule", ["getConfirmed", "clearConfirmed"]),
+    ...mapActions("deathModule", ["getDeaths", "clearDeaths"]),
+    ...mapActions("icuModule", ["getIcu", "clearIcu"]),
+    ...mapActions("testsModule", ["getTests", "clearTests"]),
   },
   computed: {
-    ...mapGetters("confirmedModule", ["totalConfirmed"]),
-    ...mapGetters("deathModule", ["totalDeaths"]),
-    ...mapGetters("icuModule", ["totalIcu"]),
-    ...mapGetters("testsModule", ["totalTests"]),
+    ...mapGetters("confirmedModule", [
+      "confirmed",
+      "confirmedLoading",
+      "totalConfirmed",
+    ]),
+    ...mapGetters("deathModule", ["deaths", "deathsLoading", "totalDeaths"]),
+    ...mapGetters("icuModule", ["icu", "icuLoading", "totalIcu"]),
+    ...mapGetters("testsModule", ["tests", "testsLoading", "totalTests"]),
+  },
+  mounted() {
+    this.getConfirmed();
+    this.getDeaths();
+    this.getIcu();
+    this.getTests();
+  },
+  unmounted() {
+    this.clearConfirmed();
+    this.clearDeaths();
+    this.clearIcu();
+    this.clearTests();
   },
 };
 </script>

@@ -6,8 +6,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      confirmed: {},
-      totalConfirmed: {},
+      confirmed: null,
+      totalConfirmed: null,
       confirmedLoading: false,
     };
   },

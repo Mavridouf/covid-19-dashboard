@@ -10,4 +10,9 @@ export default {
       context.commit("setLoading", false);
     });
   },
+
+  clearDeaths(context) {
+    context.commit("setDeaths", null);
+    context.commit("setTotalDeaths", null);
+  },
 };

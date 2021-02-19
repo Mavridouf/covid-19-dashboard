@@ -68,4 +68,21 @@ export default {
   getTotalTests(apiData) {
     return apiData[apiData.length - 1].tests;
   },
+
+  getGenderData(apiData) {
+    const apexData = {};
+    _.each(apiData, (value, key) => {
+      apexData[key] = [];
+      _.forEach(value, (type) => {
+        apexData[key].push(type);
+      });
+    });
+    return apexData;
+  },
+
+  getAgeGroups(apiData) {
+    let apexData = [];
+    apexData = _.keys(apiData.males.cases);
+    return apexData;
+  },
 };

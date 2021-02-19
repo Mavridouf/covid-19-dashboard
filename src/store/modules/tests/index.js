@@ -6,8 +6,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      tests: {},
-      totalTotalTests: {},
+      tests: null,
+      totalTotalTests: null,
       testsLoading: false,
     };
   },

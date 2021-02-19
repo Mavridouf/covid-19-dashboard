@@ -13,4 +13,9 @@ export default {
       context.commit("setLoading", false);
     });
   },
+
+  clearConfirmed(context) {
+    context.commit("setConfirmed", null);
+    context.commit("setTotalConfirmed", null);
+  },
 };
