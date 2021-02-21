@@ -14,4 +14,7 @@ export default {
   confirmedLoading(state) {
     return state.confirmedLoading;
   },
+  lastDay(state) {
+    return state.lastDay;
+  },
 };

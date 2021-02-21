@@ -18,6 +18,7 @@ export default {
         "setLastDayConfirmed",
         helper.getLastDayConfirmed(res.data.cases)
       );
+      context.commit("setLastDay", helper.getLastDay(res.data.cases));
       context.commit("setLoading", false);
     });
   },

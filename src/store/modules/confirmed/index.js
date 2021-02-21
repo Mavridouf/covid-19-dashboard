@@ -11,6 +11,7 @@ export default {
       lastDayConfirmed: null,
       totalConfirmed: null,
       confirmedLoading: false,
+      lastDay: null,
     };
   },
   mutations: confirmedMutations,

@@ -14,4 +14,7 @@ export default {
   setLoading(state, payload) {
     state.confirmedLoading = payload;
   },
+  setLastDay(state, payload) {
+    state.lastDay = payload;
+  },
 };

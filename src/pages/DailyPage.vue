@@ -1,6 +1,6 @@
 <template>
   <main-header
-    title="Total"
+    :title="lastDay"
     :confirmed="lastDayConfirmed"
     :deaths="lastDayDeaths"
     :icu="lastDayIcu"
@@ -70,6 +70,7 @@ export default {
       "dailyConfirmed",
       "lastDayConfirmed",
       "confirmedLoading",
+      "lastDay",
     ]),
     ...mapGetters("deathModule", [
       "dailyDeaths",

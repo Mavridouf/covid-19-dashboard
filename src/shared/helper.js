@@ -1,4 +1,5 @@
 import _ from "lodash";
+import moment from "moment";
 
 export default {
   getConfirmed(apiData) {
@@ -36,6 +37,10 @@ export default {
 
   getTotalConfirmed(apiData) {
     return apiData[apiData.length - 1].confirmed;
+  },
+
+  getLastDay(apiData) {
+    return moment(apiData[apiData.length - 1].date).format("DD MMM YYYY");
   },
 
   getDeaths(apiData) {
