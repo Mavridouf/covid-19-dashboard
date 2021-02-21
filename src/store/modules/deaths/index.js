@@ -7,6 +7,8 @@ export default {
   state() {
     return {
       deaths: null,
+      dailyDeaths: null,
+      lastDayDeaths: null,
       totalDeaths: null,
       deathsLoading: false,
     };

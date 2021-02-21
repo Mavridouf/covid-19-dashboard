@@ -7,6 +7,8 @@ export default {
   state() {
     return {
       tests: null,
+      dailyTests: null,
+      lastDayTests: null,
       totalTotalTests: null,
       testsLoading: false,
     };

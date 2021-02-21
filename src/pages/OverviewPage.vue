@@ -12,7 +12,7 @@
         <line-chart
           v-if="confirmed"
           :data="confirmed"
-          type="Confrimed"
+          type="Confirmed"
           color="#fac30f"
         ></line-chart>
       </card-content>

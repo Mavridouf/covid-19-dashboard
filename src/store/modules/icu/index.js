@@ -7,6 +7,8 @@ export default {
   state() {
     return {
       icu: null,
+      dailyIcu: null,
+      lastDayIcu: null,
       totalIcu: null,
       icuLoading: false,
     };

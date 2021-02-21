@@ -10,6 +10,14 @@ export default {
         "setTotalConfirmed",
         helper.getTotalConfirmed(res.data.cases)
       );
+      context.commit(
+        "setDailyConfirmed",
+        helper.getDailyConfirmed(res.data.cases)
+      );
+      context.commit(
+        "setLastDayConfirmed",
+        helper.getLastDayConfirmed(res.data.cases)
+      );
       context.commit("setLoading", false);
     });
   },
@@ -17,5 +25,7 @@ export default {
   clearConfirmed(context) {
     context.commit("setConfirmed", null);
     context.commit("setTotalConfirmed", null);
+    context.commit("setDailyConfirmed", null);
+    context.commit("setLastDayConfirmed", null);
   },
 };

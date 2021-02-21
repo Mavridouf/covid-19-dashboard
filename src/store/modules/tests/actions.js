@@ -12,6 +12,14 @@ export default {
           "setTotalTests",
           helper.getTotalTests(res.data.total_tests)
         );
+        context.commit(
+          "setDailyTests",
+          helper.getDailyTests(res.data.total_tests)
+        );
+        context.commit(
+          "setLastDayTests",
+          helper.getLastDayTests(res.data.total_tests)
+        );
         context.commit("setTestsLoading", false);
       });
   },
@@ -19,5 +27,7 @@ export default {
   clearTests(context) {
     context.commit("setTests", null);
     context.commit("setTotalTests", null);
+    context.commit("setDailyTests", null);
+    context.commit("setLastDayTests", null);
   },
 };

@@ -7,6 +7,8 @@ export default {
   state() {
     return {
       confirmed: null,
+      dailyConfirmed: null,
+      lastDayConfirmed: null,
       totalConfirmed: null,
       confirmedLoading: false,
     };

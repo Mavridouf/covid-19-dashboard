@@ -7,6 +7,11 @@ export default {
     axios.get("https://covid-19-greece.herokuapp.com/deaths").then((res) => {
       context.commit("setDeaths", helper.getDeaths(res.data.cases));
       context.commit("setTotalDeaths", helper.getTotalDeaths(res.data.cases));
+      context.commit("setDailyDeaths", helper.getDailyDeaths(res.data.cases));
+      context.commit(
+        "setLastDayDeaths",
+        helper.getLastDayDeaths(res.data.cases)
+      );
       context.commit("setLoading", false);
     });
   },
@@ -14,5 +19,7 @@ export default {
   clearDeaths(context) {
     context.commit("setDeaths", null);
     context.commit("setTotalDeaths", null);
+    context.commit("setDailyDeaths", null);
+    context.commit("setLastDayDeaths", null);
   },
 };
