@@ -1,6 +1,11 @@
 <template>
   <div v-if="!loading">
-    <div :class="[colorClass, 'title']">{{ title }}</div>
+    <div class="row">
+      <div :class="[colorClass, 'title']">{{ title }}</div>
+      <div class="pill-container">
+        <slot name="filters"></slot>
+      </div>
+    </div>
     <div class="chart">
       <slot></slot>
     </div>
@@ -40,11 +45,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 16px;
-  padding-bottom: 4px;
+@import "../styles/styles.scss";
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+
+  .title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 16px;
+  }
+  .pill-container {
+    margin-right: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .chart {

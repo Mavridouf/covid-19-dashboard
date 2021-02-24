@@ -9,19 +9,40 @@
   <card-container>
     <card>
       <card-content :loading="confirmedLoading" type="confirmed">
+        <template #filters>
+          <pill-btn
+            v-for="filter in confirmedFilters"
+            :key="filter.name"
+            :filterType="filter.name"
+            type="confirmed"
+            :isActive="filter.isActive"
+            @pill-clicked="updateConfirmFilters(filter.name)"
+          ></pill-btn>
+        </template>
         <line-chart
-          v-if="dailyConfirmed"
-          :data="dailyConfirmed"
+          v-if="filteredDailyConfirmed"
+          :data="filteredDailyConfirmed"
           type="Confirmed"
           color="#fac30f"
+          :filter="activeConfirmedFilter"
         ></line-chart>
       </card-content>
     </card>
     <card>
       <card-content :loading="deathsLoading" type="deaths">
+        <template #filters>
+          <pill-btn
+            v-for="filter in deathsFilters"
+            :key="filter.name"
+            :filterType="filter.name"
+            type="deaths"
+            :isActive="filter.isActive"
+            @pill-clicked="updateDeathFilters(filter.name)"
+          ></pill-btn>
+        </template>
         <line-chart
-          v-if="dailyDeaths"
-          :data="dailyDeaths"
+          v-if="filteredDailyDeaths"
+          :data="filteredDailyDeaths"
           type="Deaths"
           color="#ff715b"
         ></line-chart>
@@ -29,9 +50,19 @@
     </card>
     <card>
       <card-content :loading="icuLoading" type="icu">
+        <template #filters>
+          <pill-btn
+            v-for="filter in icuFilters"
+            :key="filter.name"
+            :filterType="filter.name"
+            type="icu"
+            :isActive="filter.isActive"
+            @pill-clicked="updateIcuFilters(filter.name)"
+          ></pill-btn>
+        </template>
         <line-chart
-          v-if="dailyIcu"
-          :data="dailyIcu"
+          v-if="filteredDailyIcu"
+          :data="filteredDailyIcu"
           type="Icu"
           color="#36c9c6"
         ></line-chart>
@@ -39,9 +70,19 @@
     </card>
     <card>
       <card-content :loading="testsLoading" type="tests">
+        <template #filters>
+          <pill-btn
+            v-for="filter in testsFilters"
+            :key="filter.name"
+            :filterType="filter.name"
+            type="tests"
+            :isActive="filter.isActive"
+            @pill-clicked="updateTestsFilters(filter.name)"
+          ></pill-btn>
+        </template>
         <line-chart
-          v-if="dailyTests"
-          :data="dailyTests"
+          v-if="filteredDailyTests"
+          :data="filteredDailyTests"
           type="Tests"
           color="#a084ff"
         ></line-chart>
@@ -60,28 +101,55 @@ export default {
     MainHeader,
   },
   methods: {
-    ...mapActions("confirmedModule", ["getConfirmed", "clearConfirmed"]),
-    ...mapActions("deathModule", ["getDeaths", "clearDeaths"]),
-    ...mapActions("icuModule", ["getIcu", "clearIcu"]),
-    ...mapActions("testsModule", ["getTests", "clearTests"]),
+    ...mapActions("confirmedModule", [
+      "getConfirmed",
+      "clearConfirmed",
+      "updateConfirmFilters",
+    ]),
+    ...mapActions("deathModule", [
+      "getDeaths",
+      "clearDeaths",
+      "updateDeathFilters",
+    ]),
+    ...mapActions("icuModule", ["getIcu", "clearIcu", "updateIcuFilters"]),
+    ...mapActions("testsModule", [
+      "getTests",
+      "clearTests",
+      "updateTestsFilters",
+    ]),
+    pillClick(type, filterType) {
+      console.log(type, filterType);
+    },
   },
   computed: {
     ...mapGetters("confirmedModule", [
-      "dailyConfirmed",
+      "filteredDailyConfirmed",
       "lastDayConfirmed",
       "confirmedLoading",
       "lastDay",
+      "confirmedFilters",
+      "activeConfirmedFilter",
     ]),
     ...mapGetters("deathModule", [
-      "dailyDeaths",
+      "filteredDailyDeaths",
       "lastDayDeaths",
       "deathsLoading",
+      "deathsFilters",
+      "activeDeathsFilter",
     ]),
-    ...mapGetters("icuModule", ["dailyIcu", "lastDayIcu", "icuLoading"]),
+    ...mapGetters("icuModule", [
+      "filteredDailyIcu",
+      "lastDayIcu",
+      "icuLoading",
+      "icuFilters",
+      "activeIcuFilter",
+    ]),
     ...mapGetters("testsModule", [
-      "dailyTests",
+      "filteredDailyTests",
       "lastDayTests",
       "testsLoading",
+      "testsFilters",
+      "activeTestsFilter",
     ]),
   },
   mounted() {
@@ -98,3 +166,10 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.testList {
+  padding: 5px;
+  border: 1px solid #333;
+  margin: 5px;
+}
+</style>

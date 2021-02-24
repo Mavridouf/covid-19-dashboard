@@ -14,4 +14,13 @@ export default {
   deathsLoading(state) {
     return state.deathsLoading;
   },
+  deathsFilters(state) {
+    return state.filters;
+  },
+  activeDeathsFilter(state) {
+    return state.activeFilter;
+  },
+  filteredDailyDeaths(state) {
+    return state.filteredDailyDeaths;
+  },
 };

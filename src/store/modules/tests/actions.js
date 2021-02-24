@@ -20,6 +20,7 @@ export default {
           "setLastDayTests",
           helper.getLastDayTests(res.data.total_tests)
         );
+        context.commit("filterDailyTests", "all");
         context.commit("setTestsLoading", false);
       });
   },
@@ -29,5 +30,11 @@ export default {
     context.commit("setTotalTests", null);
     context.commit("setDailyTests", null);
     context.commit("setLastDayTests", null);
+    context.commit("initFilters");
+  },
+
+  updateTestsFilters(context, payload) {
+    context.commit("filterDailyTests", payload);
+    context.commit("updateFilters", payload);
   },
 };

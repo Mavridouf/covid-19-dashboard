@@ -27,9 +27,23 @@ export default {
       });
   },
 
+  getGenderDestributionData(context) {
+    context.commit("setDistributionLoading", true);
+    axios
+      .get("https://covid-19-greece.herokuapp.com/gender-distribution")
+      .then((res) => {
+        context.commit("setDistribution", {
+          male: +res.data.gender_percentages.total_males_percentage,
+          female: +res.data.gender_percentages.total_females_percentage,
+        });
+        context.commit("setDistributionLoading", false);
+      });
+  },
+
   clearGenderData(context) {
     context.commit("setMale", null);
     context.commit("setFemale", null);
     context.commit("setAgeGroups", []);
+    context.commit("setDistribution", null);
   },
 };

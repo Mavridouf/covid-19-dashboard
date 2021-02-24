@@ -1,6 +1,6 @@
 <template>
   <gender-header
-    title="Total"
+    title="Gender Data"
     :cases="totalGenderData?.cases"
     :deaths="totalGenderData?.deaths"
     :icu="totalGenderData?.critical"
@@ -32,7 +32,7 @@
       </card-content>
     </card>
     <card>
-      <card-content :loading="gendersLoading" type="icu">
+      <card-content :loading="distributionLoading" type="icu">
         <bar-chart
           v-if="male && female"
           :data="{
@@ -41,6 +41,14 @@
             ageGroups: ageGroups,
           }"
         ></bar-chart>
+      </card-content>
+    </card>
+    <card>
+      <card-content :loading="gendersLoading" type="Cases Gender Distribution">
+        <donut-chart
+          v-if="genderDistribution"
+          :data="genderDistribution"
+        ></donut-chart>
       </card-content>
     </card>
   </card-container>
@@ -55,7 +63,11 @@ export default {
     GenderHeader,
   },
   methods: {
-    ...mapActions("genderModule", ["getGenderData", "clearGenderData"]),
+    ...mapActions("genderModule", [
+      "getGenderData",
+      "getGenderDestributionData",
+      "clearGenderData",
+    ]),
   },
   computed: {
     ...mapGetters("genderModule", [
@@ -64,10 +76,13 @@ export default {
       "ageGroups",
       "totalGenderData",
       "gendersLoading",
+      "genderDistribution",
+      "distributionLoading",
     ]),
   },
   mounted() {
     this.getGenderData();
+    this.getGenderDestributionData();
   },
   unmounted() {
     this.clearGenderData();

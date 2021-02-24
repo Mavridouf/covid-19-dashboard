@@ -78,7 +78,7 @@ export default {
     return apiData[apiData.length - 1].deaths;
   },
 
-  getIcu(apiData) {
+  getDailyIcu(apiData) {
     const apexData = [];
     let prevVal = 0;
     _.forEach(apiData, (d) => {
@@ -91,31 +91,29 @@ export default {
     return apexData;
   },
 
-  getDailyIcu(apiData) {
+  getIcu(apiData) {
     const apexData = [];
-    let prevVal = 0;
-    let curVal = 0;
-    _.forEach(apiData, (d, index) => {
-      curVal = d.intensive_care ? d.intensive_care : curVal;
-      let daily = index === 0 ? curVal : curVal - prevVal;
+    let total = 0;
+    _.forEach(apiData, (d) => {
+      total += d.intensive_care;
       apexData.push({
         x: d.date,
-        y: daily,
+        y: total,
       });
-      prevVal = d.intensive_care ? d.intensive_care : prevVal;
     });
     return apexData;
   },
 
   getLastDayIcu(apiData) {
-    return (
-      apiData[apiData.length - 1].intensive_care -
-      apiData[apiData.length - 2].intensive_care
-    );
+    return apiData[apiData.length - 1].intensive_care;
   },
 
   getTotalIcu(apiData) {
-    return apiData[apiData.length - 1].intensive_care;
+    let total = 0;
+    _.forEach(apiData, (d) => {
+      total += d.intensive_care;
+    });
+    return total;
   },
 
   getTests(apiData) {
@@ -140,7 +138,7 @@ export default {
       let daily = index === 0 ? curVal : curVal - prevVal;
       apexData.push({
         x: d.date,
-        y: daily,
+        y: daily > 0 ? daily : 0,
       });
       prevVal = d.tests ? d.tests : prevVal;
     });
@@ -185,5 +183,17 @@ export default {
     let apexData = [];
     apexData = _.keys(apiData.males.cases);
     return apexData;
+  },
+
+  getlastWeek(lastDay) {
+    return moment(lastDay)
+      .subtract(7, "days")
+      .hours(0);
+  },
+
+  getlastMonth(lastDay) {
+    return moment(lastDay)
+      .subtract(30, "days")
+      .hours(0);
   },
 };

@@ -14,4 +14,10 @@ export default {
   gendersLoading(state) {
     return state.gendersLoading;
   },
+  genderDistribution(state) {
+    return state.distribution;
+  },
+  distributionLoading(state) {
+    return state.distributionLoading;
+  },
 };

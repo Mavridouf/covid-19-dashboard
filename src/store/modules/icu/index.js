@@ -11,6 +11,13 @@ export default {
       lastDayIcu: null,
       totalIcu: null,
       icuLoading: false,
+      filters: [
+        { name: "week", isActive: false },
+        { name: "month", isActive: false },
+        { name: "all", isActive: true },
+      ],
+      activeFilter: "all",
+      filteredDailyIcu: null,
     };
   },
   mutations: icuMutations,

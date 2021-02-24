@@ -71,6 +71,11 @@ export default {
           },
         },
         legend: {
+          labels: {
+            colors: "#828282",
+          },
+          fontFamily: "Roboto",
+          fontWeight: 500,
           markers: {
             radius: 50,
           },

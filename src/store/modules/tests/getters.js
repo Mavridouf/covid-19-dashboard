@@ -14,4 +14,13 @@ export default {
   testsLoading(state) {
     return state.testsLoading;
   },
+  testsFilters(state) {
+    return state.filters;
+  },
+  activeTestsFilter(state) {
+    return state.activeFilter;
+  },
+  filteredDailyTests(state) {
+    return state.filteredDailyTests;
+  },
 };

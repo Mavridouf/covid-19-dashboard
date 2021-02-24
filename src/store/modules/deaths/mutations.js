@@ -1,3 +1,7 @@
+import _ from "lodash";
+import moment from "moment";
+import helper from "../../../shared/helper";
+
 export default {
   setDeaths(state, payload) {
     state.deaths = payload;
@@ -13,5 +17,34 @@ export default {
   },
   setLoading(state, payload) {
     state.deathsLoading = payload;
+  },
+
+  initFilters(state) {
+    state.filters = [
+      { name: "week", isActive: false },
+      { name: "month", isActive: false },
+      { name: "all", isActive: true },
+    ];
+  },
+
+  updateFilters(state, payload) {
+    state.activeFilter = payload;
+    _.forEach(state.filters, (filter) => {
+      filter.isActive = filter.name === payload;
+    });
+  },
+
+  filterDailyDeaths(state, payload) {
+    let filter;
+    let lastDay = state.dailyDeaths[state.dailyDeaths.length - 1].x;
+    if (payload === "week") filter = helper.getlastWeek(lastDay);
+    else if (payload === "month") filter = helper.getlastMonth(lastDay);
+    else {
+      state.filteredDailyDeaths = state.dailyDeaths;
+      return;
+    }
+    state.filteredDailyDeaths = _.filter(state.dailyDeaths, (entry) => {
+      return moment(entry.x) > filter;
+    });
   },
 };

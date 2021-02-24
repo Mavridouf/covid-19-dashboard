@@ -11,6 +11,8 @@ export default {
       ageGroups: [],
       totalGenderData: null,
       gendersLoading: false,
+      distribution: null,
+      distributionLoading: false,
     };
   },
   mutations: genderMutations,

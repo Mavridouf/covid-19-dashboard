@@ -14,4 +14,10 @@ export default {
   setLoading(state, payload) {
     state.gendersLoading = payload;
   },
+  setDistribution(state, payload) {
+    state.distribution = payload;
+  },
+  setDistributionLoading(state, payload) {
+    state.distributionLoading = payload;
+  },
 };

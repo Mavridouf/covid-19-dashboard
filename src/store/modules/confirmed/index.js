@@ -12,6 +12,13 @@ export default {
       totalConfirmed: null,
       confirmedLoading: false,
       lastDay: null,
+      filters: [
+        { name: "week", isActive: false },
+        { name: "month", isActive: false },
+        { name: "all", isActive: true },
+      ],
+      activeFilter: "all",
+      filteredDailyConfirmed: null,
     };
   },
   mutations: confirmedMutations,

@@ -17,4 +17,13 @@ export default {
   lastDay(state) {
     return state.lastDay;
   },
+  confirmedFilters(state) {
+    return state.filters;
+  },
+  activeConfirmedFilter(state) {
+    return state.activeFilter;
+  },
+  filteredDailyConfirmed(state) {
+    return state.filteredDailyConfirmed;
+  },
 };

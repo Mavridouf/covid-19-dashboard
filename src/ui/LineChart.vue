@@ -1,10 +1,20 @@
 <template>
-  <apexchart type="line" :options="chartOptions" :series="series"></apexchart>
+  <apexchart
+    ref="lineChart"
+    type="line"
+    :options="chartOptions"
+    :series="series"
+  ></apexchart>
 </template>
 
 <script>
 export default {
-  props: ["data", "color", "type"],
+  props: ["data", "color", "type", "filter"],
+  watch: {
+    data(value) {
+      this.series = [{ data: value }];
+    },
+  },
   data() {
     return {
       series: [

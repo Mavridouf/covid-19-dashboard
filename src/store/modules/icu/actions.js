@@ -11,6 +11,7 @@ export default {
         context.commit("setTotalIcu", helper.getTotalIcu(res.data.cases));
         context.commit("setDailyIcu", helper.getDailyIcu(res.data.cases));
         context.commit("setLastDayIcu", helper.getLastDayIcu(res.data.cases));
+        context.commit("filterDailyIcu", "all");
         context.commit("setIcuLoading", false);
       });
   },
@@ -20,5 +21,11 @@ export default {
     context.commit("setTotalIcu", null);
     context.commit("setDailyIcu", null);
     context.commit("setLastDayIcu", null);
+    context.commit("initFilters");
+  },
+
+  updateIcuFilters(context, payload) {
+    context.commit("filterDailyIcu", payload);
+    context.commit("updateFilters", payload);
   },
 };

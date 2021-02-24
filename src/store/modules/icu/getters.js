@@ -14,4 +14,13 @@ export default {
   icuLoading(state) {
     return state.icuLoading;
   },
+  icuFilters(state) {
+    return state.filters;
+  },
+  activeIcuFilter(state) {
+    return state.activeFilter;
+  },
+  filteredDailyIcu(state) {
+    return state.filteredDailyIcu;
+  },
 };

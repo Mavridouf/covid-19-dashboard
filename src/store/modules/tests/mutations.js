@@ -1,3 +1,7 @@
+import _ from "lodash";
+import moment from "moment";
+import helper from "../../../shared/helper";
+
 export default {
   setTests(state, payload) {
     state.tests = payload;
@@ -13,5 +17,34 @@ export default {
   },
   setTestsLoading(state, payload) {
     state.testsLoading = payload;
+  },
+
+  initFilters(state) {
+    state.filters = [
+      { name: "week", isActive: false },
+      { name: "month", isActive: false },
+      { name: "all", isActive: true },
+    ];
+  },
+
+  updateFilters(state, payload) {
+    state.activeFilter = payload;
+    _.forEach(state.filters, (filter) => {
+      filter.isActive = filter.name === payload;
+    });
+  },
+
+  filterDailyTests(state, payload) {
+    let filter;
+    let lastDay = state.dailyTests[state.dailyTests.length - 1].x;
+    if (payload === "week") filter = helper.getlastWeek(lastDay);
+    else if (payload === "month") filter = helper.getlastMonth(lastDay);
+    else {
+      state.filteredDailyTests = state.dailyTests;
+      return;
+    }
+    state.filteredDailyTests = _.filter(state.dailyTests, (entry) => {
+      return moment(entry.x) > filter;
+    });
   },
 };

@@ -11,6 +11,13 @@ export default {
       lastDayDeaths: null,
       totalDeaths: null,
       deathsLoading: false,
+      filters: [
+        { name: "week", isActive: false },
+        { name: "month", isActive: false },
+        { name: "all", isActive: true },
+      ],
+      activeFilter: "all",
+      filteredDailyDeaths: null,
     };
   },
   mutations: deathMutations,

@@ -11,6 +11,13 @@ export default {
       lastDayTests: null,
       totalTotalTests: null,
       testsLoading: false,
+      filters: [
+        { name: "week", isActive: false },
+        { name: "month", isActive: false },
+        { name: "all", isActive: true },
+      ],
+      activeFilter: "all",
+      filteredDailyTests: null,
     };
   },
   mutations: testsMutations,

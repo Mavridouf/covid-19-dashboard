@@ -12,6 +12,7 @@ export default {
         "setLastDayDeaths",
         helper.getLastDayDeaths(res.data.cases)
       );
+      context.commit("filterDailyDeaths", "all");
       context.commit("setLoading", false);
     });
   },
@@ -21,5 +22,11 @@ export default {
     context.commit("setTotalDeaths", null);
     context.commit("setDailyDeaths", null);
     context.commit("setLastDayDeaths", null);
+    context.commit("initFilters");
+  },
+
+  updateDeathFilters(context, payload) {
+    context.commit("filterDailyDeaths", payload);
+    context.commit("updateFilters", payload);
   },
 };

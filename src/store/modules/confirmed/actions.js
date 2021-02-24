@@ -4,6 +4,7 @@ import helper from "../../../shared/helper.js";
 export default {
   getConfirmed(context) {
     context.commit("setLoading", true);
+    context.commit("initFilters");
     axios.get("https://covid-19-greece.herokuapp.com/confirmed").then((res) => {
       context.commit("setConfirmed", helper.getConfirmed(res.data.cases));
       context.commit(
@@ -19,6 +20,7 @@ export default {
         helper.getLastDayConfirmed(res.data.cases)
       );
       context.commit("setLastDay", helper.getLastDay(res.data.cases));
+      context.commit("filterDailyConfirmed", "all");
       context.commit("setLoading", false);
     });
   },
@@ -28,5 +30,11 @@ export default {
     context.commit("setTotalConfirmed", null);
     context.commit("setDailyConfirmed", null);
     context.commit("setLastDayConfirmed", null);
+    context.commit("initFilters");
+  },
+
+  updateConfirmFilters(context, payload) {
+    context.commit("filterDailyConfirmed", payload);
+    context.commit("updateFilters", payload);
   },
 };
