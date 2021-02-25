@@ -81,4 +81,32 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 426px) {
+  .container {
+    justify-content: space-between;
+    margin-top: 18px;
+    .title {
+      width: 80px;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .results {
+      flex: 1;
+      margin-left: 14px;
+      padding: 15px 16px;
+      .row {
+        .col {
+          width: 100%;
+          padding: 5px 0px;
+          padding: auto;
+          span {
+            font-size: 12px;
+            padding: 0px 8px;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

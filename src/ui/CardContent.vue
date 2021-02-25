@@ -75,4 +75,13 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 426px) {
+  .row {
+    padding-bottom: 8px;
+    .title {
+      font-size: 12px;
+    }
+  }
+}
 </style>

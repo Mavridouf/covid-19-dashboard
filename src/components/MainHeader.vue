@@ -111,4 +111,29 @@ export default {
     }
   }
 }
+@media screen and (max-width: 426px) {
+  .container {
+    justify-content: space-between;
+    margin-top: 18px;
+    .title {
+      width: 80px;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .results {
+      flex: 1;
+      padding: 15px 16px;
+      margin-left: 14px;
+      .col {
+        width: 100%;
+        padding: 0px 8px;
+        .row {
+          span {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

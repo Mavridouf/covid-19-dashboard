@@ -84,4 +84,19 @@
   left: 0%;
   border-radius: 12px;
 }
+
+@media screen and (max-width: 426px) {
+  .navbar {
+    display: flex;
+    justify-content: center;
+    .linkWrapper {
+      display: inline-block;
+      margin-right: 22px;
+    }
+
+    .link {
+      font-size: 12px;
+    }
+  }
+}
 </style>

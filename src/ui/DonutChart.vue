@@ -39,6 +39,23 @@ export default {
           dropShadow: {
             enabled: false,
           },
+          background: {
+            enabled: true,
+            foreColor: "#888",
+            padding: 10,
+            borderRadius: 5,
+            borderWidth: 1,
+            borderColor: "#fff",
+            opacity: 1,
+            dropShadow: {
+              enabled: true,
+              top: 1,
+              left: 1,
+              blur: 1,
+              color: "#000",
+              opacity: 0.4,
+            },
+          },
         },
         legend: {
           labels: {

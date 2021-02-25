@@ -7,12 +7,7 @@
       rel="noreferrer noopener"
       style="display: flex;"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 48 48"
-        width="38px"
-        height="38px"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
         <linearGradient
           id="rL2wppHyxHVbobwndsT6Ca"
           gradientUnits="userSpaceOnUse"
@@ -118,7 +113,8 @@ body {
   svg {
     cursor: pointer;
     margin-right: 46px;
-
+    width: 38px;
+    height: 38px;
     stop,
     #githubIcon {
       transition: all 0.3s;
@@ -142,6 +138,52 @@ body {
   .main-container {
     width: 92%;
     margin: auto;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .header {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $creme;
+
+    h2 {
+      margin-left: 16px;
+      font-family: Ubuntu;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 0.15em;
+    }
+
+    svg {
+      cursor: pointer;
+      margin-right: 16px;
+      width: 28px;
+      height: 28px;
+      stop,
+      #githubIcon {
+        transition: all 0.3s;
+      }
+    }
+    svg:hover {
+      stop {
+        stop-color: $vue;
+      }
+      #githubIcon {
+        fill: $creme;
+      }
+    }
+  }
+
+  .mainBody {
+    padding: 26px 14px;
+    .main-container {
+      width: 100%;
+      margin: auto;
+    }
   }
 }
 </style>

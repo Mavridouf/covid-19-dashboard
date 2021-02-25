@@ -91,4 +91,12 @@ export default {
 .pill:hover {
   background: #828282;
 }
+
+@media screen and (max-width: 426px) {
+  .pill {
+    width: 32px;
+    height: 20px;
+    font-size: 8px;
+  }
+}
 </style>
