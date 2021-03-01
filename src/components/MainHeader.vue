@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <h1 class="title">{{ title }}</h1>
+    <div class="titleContainer">
+      <h6 v-if="title !== 'Total'" class="subTitle">Last Updated</h6>
+      <h1 class="title">{{ title }}</h1>
+    </div>
     <div
       v-if="confirmedLoading || deathsLoading || icuLoading || testsLoading"
       class="results flex-col"
@@ -76,12 +79,23 @@ export default {
     display: flex;
     flex-direction: column;
   }
-  .title {
-    margin: 0;
-    font-family: "Ubuntu";
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    .subTitle {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      font-size: 16px;
+      font-family: "Ubuntu";
+    }
+    .title {
+      margin: 0;
+      font-family: "Ubuntu";
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+    }
   }
   .results {
     background: #ffffff;
@@ -111,15 +125,9 @@ export default {
     }
   }
 }
-@media screen and (max-width: 426px) {
+
+@media screen and (max-width: 768px) {
   .container {
-    justify-content: space-between;
-    margin-top: 18px;
-    .title {
-      width: 80px;
-      font-size: 18px;
-      margin-bottom: 12px;
-    }
     .results {
       flex: 1;
       padding: 15px 16px;
@@ -127,9 +135,34 @@ export default {
       .col {
         width: 100%;
         padding: 0px 8px;
-        .row {
-          span {
-            font-size: 12px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .container {
+    justify-content: space-between;
+    margin-top: 18px;
+    .titleContainer {
+      display: flex;
+      flex-direction: column;
+      .subTitle {
+        font-size: 12px;
+      }
+      .title {
+        width: 80px;
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+    }
+    .container {
+      .results {
+        .col {
+          .row {
+            span {
+              font-size: 12px;
+            }
           }
         }
       }
