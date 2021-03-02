@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <p>
-      COVID-19 Dashboard aims to provide an easy way to visualize COVID-19
-      progress in Greece.
+      COVID-19 Dashboard aims to provide an easy way to visualize how COVID-19
+      progresses in Greece.
     </p>
     <p>
       The data is provided from
