@@ -10,14 +10,14 @@
     <card>
       <card-content :loading="confirmedLoading" type="confirmed">
         <template #filters>
-          <pill-btn
+          <pill-button
             v-for="filter in confirmedFilters"
             :key="filter.name"
             :filterType="filter.name"
             type="confirmed"
             :isActive="filter.isActive"
             @pill-clicked="updateConfirmFilters(filter.name)"
-          ></pill-btn>
+          ></pill-button>
         </template>
         <line-chart
           v-if="filteredDailyConfirmed"
@@ -31,14 +31,14 @@
     <card>
       <card-content :loading="deathsLoading" type="deaths">
         <template #filters>
-          <pill-btn
+          <pill-button
             v-for="filter in deathsFilters"
             :key="filter.name"
             :filterType="filter.name"
             type="deaths"
             :isActive="filter.isActive"
             @pill-clicked="updateDeathFilters(filter.name)"
-          ></pill-btn>
+          ></pill-button>
         </template>
         <line-chart
           v-if="filteredDailyDeaths"
@@ -51,14 +51,14 @@
     <card>
       <card-content :loading="icuLoading" type="icu">
         <template #filters>
-          <pill-btn
+          <pill-button
             v-for="filter in icuFilters"
             :key="filter.name"
             :filterType="filter.name"
             type="icu"
             :isActive="filter.isActive"
             @pill-clicked="updateIcuFilters(filter.name)"
-          ></pill-btn>
+          ></pill-button>
         </template>
         <line-chart
           v-if="filteredDailyIcu"
@@ -71,14 +71,14 @@
     <card>
       <card-content :loading="testsLoading" type="tests">
         <template #filters>
-          <pill-btn
+          <pill-button
             v-for="filter in testsFilters"
             :key="filter.name"
             :filterType="filter.name"
             type="tests"
             :isActive="filter.isActive"
             @pill-clicked="updateTestsFilters(filter.name)"
-          ></pill-btn>
+          ></pill-button>
         </template>
         <line-chart
           v-if="filteredDailyTests"
@@ -93,27 +93,31 @@
 
 <script>
 import MainHeader from "../components/MainHeader.vue";
+import LineChart from "../components/LineChart.vue";
+import PillButton from "../components/PillButton.vue";
 
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     MainHeader,
+    LineChart,
+    PillButton,
   },
   methods: {
     ...mapActions("confirmedModule", [
-      "getConfirmed",
+      "getDailyConfirmed",
       "clearConfirmed",
       "updateConfirmFilters",
     ]),
     ...mapActions("deathModule", [
-      "getDeaths",
+      "getDailyDeaths",
       "clearDeaths",
       "updateDeathFilters",
     ]),
-    ...mapActions("icuModule", ["getIcu", "clearIcu", "updateIcuFilters"]),
+    ...mapActions("icuModule", ["getDailyIcu", "clearIcu", "updateIcuFilters"]),
     ...mapActions("testsModule", [
-      "getTests",
+      "getDailyTests",
       "clearTests",
       "updateTestsFilters",
     ]),
@@ -153,10 +157,10 @@ export default {
     ]),
   },
   mounted() {
-    this.getConfirmed();
-    this.getDeaths();
-    this.getIcu();
-    this.getTests();
+    this.getDailyConfirmed();
+    this.getDailyDeaths();
+    this.getDailyIcu();
+    this.getDailyTests();
   },
   unmounted() {
     this.clearConfirmed();

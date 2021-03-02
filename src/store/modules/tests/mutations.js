@@ -1,5 +1,5 @@
-import _ from "lodash";
-import moment from "moment";
+import moment from "moment/src/moment";
+import { forEach } from "lodash/core";
 import helper from "../../../shared/helper";
 
 export default {
@@ -29,7 +29,7 @@ export default {
 
   updateFilters(state, payload) {
     state.activeFilter = payload;
-    _.forEach(state.filters, (filter) => {
+    forEach(state.filters, (filter) => {
       filter.isActive = filter.name === payload;
     });
   },
@@ -43,7 +43,7 @@ export default {
       state.filteredDailyTests = state.dailyTests;
       return;
     }
-    state.filteredDailyTests = _.filter(state.dailyTests, (entry) => {
+    state.filteredDailyTests = state.dailyTests.filter((entry) => {
       return moment(entry.x) > filter;
     });
   },

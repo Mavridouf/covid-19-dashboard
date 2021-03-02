@@ -1,100 +1,71 @@
-import _ from "lodash";
-import moment from "moment";
+import moment from "moment/src/moment";
+import { forEach, each, keys } from "lodash/core";
 
 export default {
-  getConfirmed(apiData) {
+  getApiKeysFromType(type) {
+    switch (type) {
+      case "confirmed":
+        return "confirmed";
+      case "deaths":
+        return "deaths";
+      case "icu":
+        return "intensive_care";
+      case "tests":
+        return "tests";
+      default:
+        return type;
+    }
+  },
+
+  getOverview(apiData, type) {
+    let key = this.getApiKeysFromType(type);
     const apexData = [];
     let prevVal = 0;
-    _.forEach(apiData, (d) => {
+    forEach(apiData, (d) => {
       apexData.push({
         x: d.date,
-        y: d.confirmed ? d.confirmed : prevVal,
+        y: d[key] ? d[key] : prevVal,
       });
-      prevVal = d.confirmed ? d.confirmed : prevVal;
+      prevVal = d[key] ? d[key] : prevVal;
     });
     return apexData;
   },
 
-  getDailyConfirmed(apiData) {
+  getTotal(apiData, type) {
+    let key = this.getApiKeysFromType(type);
+    return apiData[apiData.length - 1][key];
+  },
+
+  getDaily(apiData, type) {
+    let key = this.getApiKeysFromType(type);
     const apexData = [];
-    _.forEach(apiData, (d, index) => {
-      let daily =
-        index === 0 ? d.confirmed : d.confirmed - apiData[index - 1].confirmed;
+    let prevVal = 0;
+    let curVal = 0;
+    forEach(apiData, (d, index) => {
+      curVal = d[key] ? d[key] : curVal;
+      let daily = index === 0 ? curVal : curVal - prevVal;
       apexData.push({
         x: d.date,
-        y: daily,
+        y: daily > 0 ? daily : 0,
       });
+      prevVal = d[key] ? d[key] : prevVal;
     });
     return apexData;
   },
 
-  getLastDayConfirmed(apiData) {
-    return (
-      apiData[apiData.length - 1].confirmed -
-      apiData[apiData.length - 2].confirmed
-    );
-  },
-
-  getTotalConfirmed(apiData) {
-    return apiData[apiData.length - 1].confirmed;
+  getLastDayData(apiData, type) {
+    let key = this.getApiKeysFromType(type);
+    return apiData[apiData.length - 1][key] - apiData[apiData.length - 2][key];
   },
 
   getLastDay(apiData) {
     return moment(apiData[apiData.length - 1].date).format("DD MMM YYYY");
   },
 
-  getDeaths(apiData) {
-    const apexData = [];
-    let prevVal = 0;
-    _.forEach(apiData, (d) => {
-      apexData.push({
-        x: d.date,
-        y: d.deaths ? d.deaths : prevVal,
-      });
-      prevVal = d.deaths ? d.deaths : prevVal;
-    });
-    return apexData;
-  },
-
-  getDailyDeaths(apiData) {
-    const apexData = [];
-    _.forEach(apiData, (d, index) => {
-      let daily = index === 0 ? d.deaths : d.deaths - apiData[index - 1].deaths;
-      apexData.push({
-        x: d.date,
-        y: daily,
-      });
-    });
-    return apexData;
-  },
-
-  getLastDayDeaths(apiData) {
-    return (
-      apiData[apiData.length - 1].deaths - apiData[apiData.length - 2].deaths
-    );
-  },
-
-  getTotalDeaths(apiData) {
-    return apiData[apiData.length - 1].deaths;
-  },
-
-  getDailyIcu(apiData) {
-    const apexData = [];
-    let prevVal = 0;
-    _.forEach(apiData, (d) => {
-      apexData.push({
-        x: d.date,
-        y: d.intensive_care ? d.intensive_care : prevVal,
-      });
-      prevVal = d.intensive_care ? d.intensive_care : prevVal;
-    });
-    return apexData;
-  },
-
   getIcu(apiData) {
     const apexData = [];
     let total = 0;
-    _.forEach(apiData, (d) => {
+    forEach(apiData, (d) => {
       total += d.intensive_care;
       apexData.push({
         x: d.date,
@@ -104,62 +75,19 @@ export default {
     return apexData;
   },
 
-  getLastDayIcu(apiData) {
-    return apiData[apiData.length - 1].intensive_care;
-  },
-
   getTotalIcu(apiData) {
     let total = 0;
-    _.forEach(apiData, (d) => {
+    forEach(apiData, (d) => {
       total += d.intensive_care;
     });
     return total;
   },
 
-  getTests(apiData) {
-    const apexData = [];
-    let prevVal = 0;
-    _.forEach(apiData, (d) => {
-      apexData.push({
-        x: d.date,
-        y: d.tests ? d.tests : prevVal,
-      });
-      prevVal = d.tests ? d.tests : prevVal;
-    });
-    return apexData;
-  },
-
-  getDailyTests(apiData) {
-    const apexData = [];
-    let prevVal = 0;
-    let curVal = 0;
-    _.forEach(apiData, (d, index) => {
-      curVal = d.tests ? d.tests : curVal;
-      let daily = index === 0 ? curVal : curVal - prevVal;
-      apexData.push({
-        x: d.date,
-        y: daily > 0 ? daily : 0,
-      });
-      prevVal = d.tests ? d.tests : prevVal;
-    });
-    return apexData;
-  },
-
-  getLastDayTests(apiData) {
-    return (
-      apiData[apiData.length - 1].tests - apiData[apiData.length - 2].tests
-    );
-  },
-
-  getTotalTests(apiData) {
-    return apiData[apiData.length - 1].tests;
-  },
-
   getGenderData(apiData) {
     const apexData = {};
-    _.each(apiData, (value, key) => {
+    each(apiData, (value, key) => {
       apexData[key] = [];
-      _.forEach(value, (type) => {
+      forEach(value, (type) => {
         apexData[key].push(type);
       });
     });
@@ -168,9 +96,9 @@ export default {
 
   getTotalGenderData(apiData) {
     const totalData = {};
-    _.forEach(apiData, (gender) => {
-      _.forEach(gender, (type, key) => {
-        _.forEach(type, (ageGroup) => {
+    forEach(apiData, (gender) => {
+      forEach(gender, (type, key) => {
+        forEach(type, (ageGroup) => {
           if (!totalData[key]) totalData[key] = 0;
           totalData[key] += +ageGroup;
         });
@@ -181,7 +109,7 @@ export default {
 
   getAgeGroups(apiData) {
     let apexData = [];
-    apexData = _.keys(apiData.males.cases);
+    apexData = keys(apiData.males.cases);
     return apexData;
   },
 

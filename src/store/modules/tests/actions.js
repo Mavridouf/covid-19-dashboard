@@ -7,18 +7,31 @@ export default {
     axios
       .get("https://covid-19-greece.herokuapp.com//total-tests")
       .then((res) => {
-        context.commit("setTests", helper.getTests(res.data.total_tests));
         context.commit(
-          "setTotalTests",
-          helper.getTotalTests(res.data.total_tests)
+          "setTests",
+          helper.getOverview(res.data.total_tests, "tests")
         );
         context.commit(
+          "setTotalTests",
+          helper.getTotal(res.data.total_tests, "tests")
+        );
+        context.commit("setTestsLoading", false);
+      });
+  },
+
+  getDailyTests(context) {
+    context.commit("setTestsLoading", true);
+    context.commit("initFilters");
+    axios
+      .get("https://covid-19-greece.herokuapp.com//total-tests")
+      .then((res) => {
+        context.commit(
           "setDailyTests",
-          helper.getDailyTests(res.data.total_tests)
+          helper.getDaily(res.data.total_tests, "tests")
         );
         context.commit(
           "setLastDayTests",
-          helper.getLastDayTests(res.data.total_tests)
+          helper.getLastDayData(res.data.total_tests, "tests")
         );
         context.commit("filterDailyTests", "all");
         context.commit("setTestsLoading", false);

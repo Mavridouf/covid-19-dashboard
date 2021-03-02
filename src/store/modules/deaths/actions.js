@@ -5,12 +5,26 @@ export default {
   getDeaths(context) {
     context.commit("setLoading", true);
     axios.get("https://covid-19-greece.herokuapp.com/deaths").then((res) => {
-      context.commit("setDeaths", helper.getDeaths(res.data.cases));
-      context.commit("setTotalDeaths", helper.getTotalDeaths(res.data.cases));
-      context.commit("setDailyDeaths", helper.getDailyDeaths(res.data.cases));
+      context.commit("setDeaths", helper.getOverview(res.data.cases, "deaths"));
+      context.commit(
+        "setTotalDeaths",
+        helper.getTotal(res.data.cases, "deaths")
+      );
+      context.commit("setLoading", false);
+    });
+  },
+
+  getDailyDeaths(context) {
+    context.commit("setLoading", true);
+    context.commit("initFilters");
+    axios.get("https://covid-19-greece.herokuapp.com/deaths").then((res) => {
+      context.commit(
+        "setDailyDeaths",
+        helper.getDaily(res.data.cases, "deaths")
+      );
       context.commit(
         "setLastDayDeaths",
-        helper.getLastDayDeaths(res.data.cases)
+        helper.getLastDayData(res.data.cases, "deaths")
       );
       context.commit("filterDailyDeaths", "all");
       context.commit("setLoading", false);

@@ -52,12 +52,14 @@
 
 <script>
 import MainHeader from "../components/MainHeader.vue";
+import LineChart from "../components/LineChart.vue";
 
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     MainHeader,
+    LineChart,
   },
   methods: {
     ...mapActions("confirmedModule", ["getConfirmed", "clearConfirmed"]),

@@ -56,11 +56,16 @@
 
 <script>
 import GenderHeader from "../components/GenderHeader";
+import BarChart from "../components/BarChart";
+import DonutChart from "../components/DonutChart";
+
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     GenderHeader,
+    BarChart,
+    DonutChart,
   },
   methods: {
     ...mapActions("genderModule", [
