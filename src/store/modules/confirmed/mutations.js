@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from "moment/src/moment";
 import { forEach } from "lodash/core";
 import helper from "../../../shared/helper";
 
