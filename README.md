@@ -8,6 +8,8 @@ The data is provided from [Coronavirus Tracker API for Greece](https://github.co
 
 The idea behind this Project was to practice Vue.js and Data Visualization fundamentals.
 
+# [Covid-19-Greece-Dashboard](https://covid-19-greece-dashboard.herokuapp.com/#/daily)
+
 ## Project setup
 
 ```
